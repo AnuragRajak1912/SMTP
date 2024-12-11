@@ -24,9 +24,9 @@ app.post('/', (req, res) => {
   console.log('Messages:', messages);
 
   // Send emails
-  // emails.forEach((email, index) => {
-  //   sendEmail(email, subjects[index], messages[index]);
-  // });
+  emails.forEach((email, index) => {
+    sendEmail(email, subjects[index], messages[index]);
+  });
 
   res.send('Emails sent successfully!');
 });
