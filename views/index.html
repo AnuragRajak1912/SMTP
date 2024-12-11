@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Form Fields</title>
+    <style>
+        .field-group {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form action="/" method="post">
+        <div id="email-container">
+            <h3>Emails:</h3>
+            <div class="field-group">
+                <input type="text" placeholder="Enter email" name="emails[]">
+                <!-- <button type="button" onclick="removeField(this)">Remove</button> -->
+            </div>
+        </div>
+        <button type="button" onclick="addField('email-container', 'emails[]', 'Enter email')">Add Email</button>
+
+        <div id="subject-container">
+            <h3>Subjects:</h3>
+            <div class="field-group">
+                <input type="text" placeholder="Enter subject" name="subjects[]">
+                <!-- <button type="button" onclick="removeField(this)">Remove</button> -->
+            </div>
+        </div>
+        <button type="button" onclick="addField('subject-container', 'subjects[]', 'Enter subject')">Add Subject</button>
+
+        <div id="message-container">
+            <h3>Messages:</h3>
+            <div class="field-group">
+                <input type="text" placeholder="Enter message" name="messages[]">
+                <!-- <button type="button" onclick="removeField(this)">Remove</button> -->
+            </div>
+        </div>
+        <button type="button" onclick="addField('message-container', 'messages[]', 'Enter message')">Add Message</button>
+
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function addField(containerId, name, placeholder) {
+            const container = document.getElementById(containerId);
+            const div = document.createElement('div');
+            div.classList.add('field-group');
+            div.innerHTML = `
+                <input type="text" placeholder="${placeholder}" name="${name}">
+                <button type="button" onclick="removeField(this)">Remove</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function removeField(button) {
+            button.parentElement.remove();
+        }
+    </script>
+</body>
+</html>
