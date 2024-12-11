@@ -10,9 +10,10 @@ const port = process.env.PORT || 80;
 app.set('views', path.join(__dirname, './views'));
 app.use(express.static(path.join(__dirname, './public')));
 app.use(express.urlencoded({ extended: true }));
+app.set('view engine','ejs');
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/views/index.html'));
+  res.render('index');
 });
 
 app.post('/', (req, res) => {
@@ -28,7 +29,7 @@ app.post('/', (req, res) => {
     sendEmail(email, subjects[index], messages[index]);
   });
 
-  res.send('Emails sent successfully!');
+  res.render('index');
 });
 
 
@@ -52,7 +53,7 @@ function sendEmail(email, subject, message) {
     if (error) {
       console.log('Error:', error);
     } else {
-      console.log(`Email sent to ${email}:`);
+      console.log(`Email sent to ${email}`);
     }
   });
 }
